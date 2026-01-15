@@ -58,7 +58,7 @@ function mostrarLibros(){
           <td class="border p-2">${elemnt.titulo}</td>
           <td class="border p-2">${elemnt.autor}</td>
           <td class="border p-2">${elemnt.isbn}</td>
-          <td class="border p-2">Disponible</td>
+          <td class="border p-2">${elemnt.estado}</td>
           <td class="border p-2">
             <button 
                class="bg-red-500 text-white px-2" 
@@ -73,6 +73,10 @@ function mostrarLibros(){
 }
 
 function eliminarLibro(index){
+   if (librosDisponibles[index].estado === "prestado"){
+      alert("No se puede eliminar un libro prestado");
+      return;
+   }
    alert(`Libro con indice ${index} eliminado`)
    librosDisponibles.splice(index, 1);
    localStorage.setItem("librosDisponibles", JSON.stringify(librosDisponibles));
